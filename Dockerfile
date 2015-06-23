@@ -5,6 +5,7 @@ FROM ubuntu:14.04
 RUN apt-get update -y
 RUN apt-get install -y \
   vim-nox \
+  zsh \
   git \
   curl \
   wget
@@ -37,6 +38,17 @@ RUN mkdir /shared/
 RUN touch /shared/.keep
 RUN chown -R dev:dev /shared
 VOLUME /shared
+##-##
+
+#####
+# zsh
+RUN chsh -s /bin/zsh
+RUN git clone --recursive https://github.com/sorin-ionescu/prezto.git $HOME/.zprezto
+RUN setopt EXTENDED_GLOB \
+  for rcfile in "${ZDOTDIR:-$HOME}"/.zprezto/runcoms/^README.md(.N); do \
+    ln -s "$rcfile" "${ZDOTDIR:-$HOME}/.${rcfile:t}" \
+    done
+RUN echo zstyle ':prezto:module:prompt' theme 'steeef' >> $HOME/.zpreztorc
 ##-##
 
 #####
