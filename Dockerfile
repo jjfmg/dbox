@@ -44,10 +44,12 @@ VOLUME /shared
 # zsh
 RUN chsh -s /bin/zsh
 RUN git clone --recursive https://github.com/sorin-ionescu/prezto.git $HOME/.zprezto
-RUN setopt EXTENDED_GLOB \
-  for rcfile in "${ZDOTDIR:-$HOME}"/.zprezto/runcoms/^README.md(.N); do \
-    ln -s "$rcfile" "${ZDOTDIR:-$HOME}/.${rcfile:t}" \
-    done
+RUN ln -s $HOME/.zprezto/runcoms/zlogin $HOME/.zlogin
+RUN ln -s $HOME/.zprezto/runcoms/zlogout $HOME/.zlogout
+RUN ln -s $HOME/.zprezto/runcoms/zpreztorc $HOME/.zpreztorc
+RUN ln -s $HOME/.zprezto/runcoms/zprofile $HOME/.zprofile
+RUN ln -s $HOME/.zprezto/runcoms/zshenv $HOME/.zshenv
+RUN ln -s $HOME/.zprezto/runcoms/zshrc $HOME/.zshrc
 RUN echo zstyle ':prezto:module:prompt' theme 'steeef' >> $HOME/.zpreztorc
 ##-##
 
