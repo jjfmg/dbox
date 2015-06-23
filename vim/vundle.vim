@@ -5,7 +5,7 @@ set rtp+=~/.vim/bundle/Vundle.vim
 
 " ==================
 " PLUGIN STUFF BEGINS
-call vundle#rc()
+call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 " from skwp/dotfiles
 Plugin "chrisbra/color_highlight.git"
