@@ -14,6 +14,8 @@ RUN mkdir /home/dev
 RUN chown -R dev:dev /home/dev
 RUN mkdir -p /home/dev/bin
 ENV PATH /home/dev/bin:$PATH
+WORKDIR /home/dev
+ENV HOME /home/dev
 
 # data volumes
 RUN mkdir /data/
@@ -25,10 +27,11 @@ RUN touch /shared/.keep
 RUN chown -R dev:dev /shared
 VOLUME /shared
 
-# dotfiles
-WORKDIR /home/dev
-ENV HOME /home/dev
-ADD dotfiles/* /home/dev/
+# vim
+ADD dotfiles/vim $HOME/.vim
+ADD dotfiles/vimrc $HOME/.vimrc
+RUN mkdir $HOME/.vim/bundle
+RUN git clone https://github.com/gmarik/Vundle.vim.git $HOME/.vim/bundle/Vundle.vim
 
 # shared parts
 RUN ln -s /shared/.ssh
