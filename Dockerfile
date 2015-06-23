@@ -28,10 +28,10 @@ RUN chown -R dev:dev /shared
 VOLUME /shared
 
 # vim
-ADD dotfiles/vim $HOME/.vim
-ADD dotfiles/vimrc $HOME/.vimrc
-RUN mkdir $HOME/.vim/bundle
+ADD vimrc $HOME/.vimrc
+RUN mkdir -p $HOME/.vim/bundle
 RUN git clone https://github.com/gmarik/Vundle.vim.git $HOME/.vim/bundle/Vundle.vim
+RUN vim +'silent! PluginInstall' +qall
 
 # shared parts
 RUN ln -s /shared/.ssh
