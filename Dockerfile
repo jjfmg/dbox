@@ -31,7 +31,7 @@ VOLUME /shared
 ADD vimrc $HOME/.vimrc
 RUN mkdir -p $HOME/.vim/bundle
 RUN git clone https://github.com/gmarik/Vundle.vim.git $HOME/.vim/bundle/Vundle.vim
-RUN vim +'silent! PluginInstall' +qall
+RUN vim -E -u NONE -S ~/.vimrc +qall
 
 # shared parts
 RUN ln -s /shared/.ssh
