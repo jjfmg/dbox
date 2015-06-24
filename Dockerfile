@@ -55,6 +55,12 @@ WORKDIR $HOME/.vim/bundle
 RUN git clone git://github.com/jtratner/vim-flavored-markdown.git
 ##-##
 
+###########
+# add files
+ADD vimrc $HOME/.vimrc
+ADD gitconfig $HOME/.gitconfig
+##-##
+
 #############
 # final stuff
 WORKDIR /root
