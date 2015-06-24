@@ -13,31 +13,23 @@ RUN apt-get install -y \
 
 ########################
 # setup user environment
-RUN useradd dev
-RUN mkdir /home/dev
-RUN chown -R dev:dev /home/dev
-RUN mkdir -p /home/dev/bin
 RUN cp /usr/share/zoneinfo/America/Los_Angeles /etc/localtime
 RUN dpkg-reconfigure locales
 RUN locale-gen en_US.UTF-8
 RUN /usr/sbin/update-locale LANG=en_US.UTF-8
   # ENV
-ENV PATH /home/dev/bin:$PATH
-ENV HOME /home/dev
+ENV HOME /root
 ENV LC_ALL en_US.UTF-8
-WORKDIR /home/dev
 ##-##
 
 ##############
 # data volumes
 RUN mkdir /data/
-RUN touch /data/.keep
-RUN chown -R dev:dev /data/
 VOLUME /data/
 RUN mkdir /shared/
-RUN touch /shared/.keep
-RUN chown -R dev:dev /shared
 VOLUME /shared
+RUN mkdir /projects/
+VOLUME /projects/
 ##-##
 
 #####
@@ -57,11 +49,10 @@ RUN echo zstyle ':prezto:module:prompt' theme 'steeef' >> $HOME/.zpreztorc
 # vim
 ADD vimrc $HOME/.vimrc
 RUN mkdir -p $HOME/.vim/autoload $HOME/.vim/bundle
-RUN git clone https://github.com/gmarik/Vundle.vim.git $HOME/.vim/bundle/Vundle.vim
-RUN curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
+RUN curl -LSso $HOME/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
   # vim plugins
-RUN git clone git://github.com/jtratner/vim-flavored-markdown.git \
-  $HOME/.vim/bundle/vim-flavored-markdown
+WORKDIR $HOME/.vim/bundle
+RUN git clone git://github.com/jtratner/vim-flavored-markdown.git
 ##-##
 
 ##############
@@ -71,6 +62,7 @@ RUN ln -s /shared/.ssh
 
 #############
 # final stuff
-RUN chown -R dev:dev /home/dev
-USER dev
+WORKDIR /root
+USER root
+CMD /bin/zsh
 ##-##
