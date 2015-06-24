@@ -43,21 +43,16 @@ RUN ln -s $HOME/.zprezto/runcoms/zprofile $HOME/.zprofile
 RUN ln -s $HOME/.zprezto/runcoms/zshenv $HOME/.zshenv
 RUN ln -s $HOME/.zprezto/runcoms/zshrc $HOME/.zshrc
 RUN echo zstyle ':prezto:module:prompt' theme 'steeef' >> $HOME/.zpreztorc
+RUN echo 'if [-d /shared/.ssh]; then ln -s /shared/.ssh /root/.ssh; fi' >> $HOME/.zlogin
 ##-##
 
 #####
 # vim
-ADD vimrc $HOME/.vimrc
 RUN mkdir -p $HOME/.vim/autoload $HOME/.vim/bundle
 RUN curl -LSso $HOME/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
   # vim plugins
 WORKDIR $HOME/.vim/bundle
 RUN git clone git://github.com/jtratner/vim-flavored-markdown.git
-##-##
-
-##############
-# shared parts
-RUN ln -s /shared/.ssh
 ##-##
 
 #############
