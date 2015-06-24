@@ -13,6 +13,6 @@ fi
 
 # Customize to your needs...
 
-if [[ -d $HOME/shared/.ssh ]]; then
-  ln -s $HOME/shared/.ssh $HOME/.ssh;
+if [[ -d $HOME/shared/ssh ]]; then
+  ln -s $HOME/shared/ssh $HOME/.ssh;
 fi
