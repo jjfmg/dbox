@@ -42,9 +42,7 @@ RUN ln -s $HOME/.zprezto/runcoms/zlogout $HOME/.zlogout
 RUN ln -s $HOME/.zprezto/runcoms/zpreztorc $HOME/.zpreztorc
 RUN ln -s $HOME/.zprezto/runcoms/zprofile $HOME/.zprofile
 RUN ln -s $HOME/.zprezto/runcoms/zshenv $HOME/.zshenv
-RUN ln -s $HOME/.zprezto/runcoms/zshrc $HOME/.zshrc
 RUN echo zstyle ':prezto:module:prompt' theme 'steeef' >> $HOME/.zpreztorc
-RUN echo 'if [[ -d /shared/.ssh ]]; then\n  ln -s /shared/.ssh $HOME/.ssh;\nfi' >> $HOME/.zprofile
 ##-##
 
 #####
@@ -62,6 +60,7 @@ RUN git clone https://github.com/ekalinin/Dockerfile.vim
 # add files
 ADD vimrc $HOME/.vimrc
 ADD gitconfig $HOME/.gitconfig
+ADD zshrc $HOME/.zshrc
 ##-##
 
 #############
