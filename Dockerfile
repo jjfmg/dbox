@@ -8,7 +8,8 @@ RUN apt-get install -y \
   zsh \
   git \
   curl \
-  wget
+  wget \
+  nano
 ##-##
 
 ########################
