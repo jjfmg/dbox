@@ -17,7 +17,6 @@ set history=1000
 set showcmd
 set showmode
 set gcr=a:blinkon0
-set visualbell
 set autoread
 set hidden
 syntax on
@@ -30,6 +29,10 @@ set nowb
 set t_Co=256
 set background=dark
 colorscheme solarized
+
+" disable beep and flash
+"
+set noerrorbells visualbell t_vb=
 
 " indentation
 "
