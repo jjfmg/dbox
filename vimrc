@@ -25,6 +25,11 @@ set noswapfile
 set nobackup
 set nowb
 
+" colors
+"
+set background=dark
+colorscheme solarized
+
 " indentation
 "
 set autoindent

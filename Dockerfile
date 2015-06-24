@@ -54,6 +54,7 @@ RUN curl -LSso $HOME/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
   # vim plugins
 WORKDIR $HOME/.vim/bundle
 RUN git clone git://github.com/jtratner/vim-flavored-markdown.git
+RUN git clone git://github.com/altercation/vim-colors-solarized.git
 ##-##
 
 ###########
