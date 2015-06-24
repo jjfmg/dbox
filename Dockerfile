@@ -25,12 +25,12 @@ ENV LC_ALL en_US.UTF-8
 
 ##############
 # data volumes
-RUN mkdir /data/
-VOLUME /data/
-RUN mkdir /shared/
-VOLUME /shared
-RUN mkdir /projects/
-VOLUME /projects/
+RUN mkdir $HOME/data/
+VOLUME $HOME/data/
+RUN mkdir $HOME/shared/
+VOLUME $HOME/shared
+RUN mkdir $HOME/projects/
+VOLUME $HOME/projects/
 ##-##
 
 #####
