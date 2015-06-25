@@ -36,9 +36,9 @@ VOLUME $HOME/projects/
 # zsh
 RUN chsh -s /bin/zsh
 RUN git clone --recursive https://github.com/sorin-ionescu/prezto.git $HOME/.zprezto
-RUN ln -s $HOME/.zprezto/runcoms/zlogin $HOME/.zlogin \
-    ln -s $HOME/.zprezto/runcoms/zlogout $HOME/.zlogout \
-    ln -s $HOME/.zprezto/runcoms/zshenv $HOME/.zshenv
+RUN ln -s $HOME/.zprezto/runcoms/zlogin $HOME/.zlogin
+RUN ln -s $HOME/.zprezto/runcoms/zlogout $HOME/.zlogout
+RUN ln -s $HOME/.zprezto/runcoms/zshenv $HOME/.zshenv
 ##-##
 
 #####
