@@ -8,8 +8,7 @@ RUN apt-get install -y \
   zsh \
   git \
   curl \
-  wget \
-  nano
+  wget
 ##-##
 
 ########################
@@ -37,12 +36,9 @@ VOLUME $HOME/projects/
 # zsh
 RUN chsh -s /bin/zsh
 RUN git clone --recursive https://github.com/sorin-ionescu/prezto.git $HOME/.zprezto
-RUN ln -s $HOME/.zprezto/runcoms/zlogin $HOME/.zlogin
-RUN ln -s $HOME/.zprezto/runcoms/zlogout $HOME/.zlogout
-RUN ln -s $HOME/.zprezto/runcoms/zpreztorc $HOME/.zpreztorc
-RUN ln -s $HOME/.zprezto/runcoms/zprofile $HOME/.zprofile
-RUN ln -s $HOME/.zprezto/runcoms/zshenv $HOME/.zshenv
-RUN echo zstyle ':prezto:module:prompt' theme 'steeef' >> $HOME/.zpreztorc
+RUN ln -s $HOME/.zprezto/runcoms/zlogin $HOME/.zlogin \
+    ln -s $HOME/.zprezto/runcoms/zlogout $HOME/.zlogout \
+    ln -s $HOME/.zprezto/runcoms/zshenv $HOME/.zshenv
 ##-##
 
 #####
@@ -60,6 +56,8 @@ RUN git clone https://github.com/ekalinin/Dockerfile.vim
 # add files
 ADD vimrc $HOME/.vimrc
 ADD gitconfig $HOME/.gitconfig
+ADD zpreztorc $HOME/.zpreztorc
+ADD zprofile $HOME/.zprofile
 ADD zshrc $HOME/.zshrc
 ##-##
 
