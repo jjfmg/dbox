@@ -14,11 +14,15 @@ fi
 # Customize to your needs...
 
 if [[ -d $HOME/shared/ssh ]]; then
-  ln -s $HOME/shared/ssh $HOME/.ssh;
+  ln -s $HOME/shared/ssh $HOME/.ssh
 fi
 
 if [[ -d $HOME/projects/bin ]]; then
-  ln -s $HOME/projects/bin $HOME/bin;
+  ln -s $HOME/projects/bin $HOME/bin
+fi
+
+if [[ -f $HOME/shared/bitbucket ]]; then
+  ln -s $HOME/shared/bitbucket $HOME/.bitbucket
 fi
 
 alias compose='docker-compose'
