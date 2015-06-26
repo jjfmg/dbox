@@ -20,3 +20,10 @@ fi
 if [[ -d $HOME/projects/bin ]]; then
   ln -s $HOME/projects/bin $HOME/bin;
 fi
+
+alias compose='docker-compose'
+alias d='docker'
+alias dps='docker ps'
+alias dim='docker image'
+alias drm='docker rm'
+alias drmi='docker rmi'
