@@ -24,6 +24,6 @@ fi
 alias compose='docker-compose'
 alias d='docker'
 alias dps='docker ps'
-alias dim='docker image'
+alias dim='docker images'
 alias drm='docker rm'
 alias drmi='docker rmi'
