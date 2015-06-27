@@ -24,13 +24,21 @@ RUN cp /usr/share/zoneinfo/America/Los_Angeles /etc/localtime
 RUN dpkg-reconfigure locales
 RUN locale-gen en_US.UTF-8
 RUN /usr/sbin/update-locale LANG=en_US.UTF-8
-  # ENV
 ENV HOME /root
 ENV LC_ALL en_US.UTF-8
 ##-##
 
 ##############
 # data volumes
+#
+# I have persistent stuff on my server organized like so:
+#
+#   - /data (stuff my containers work with)
+#   - /shared (configuration stuff my containers need)
+#   - /projects (stuff I make)
+#
+# These all get mounted in ~, which in this case is /root.
+#
 RUN mkdir $HOME/data/
 VOLUME $HOME/data/
 RUN mkdir $HOME/shared/
@@ -39,8 +47,8 @@ RUN mkdir $HOME/projects/
 VOLUME $HOME/projects/
 ##-##
 
-#####
-# zsh
+##############
+# zsh + prezto
 RUN chsh -s /bin/zsh
 RUN git clone --recursive https://github.com/sorin-ionescu/prezto.git $HOME/.zprezto
 RUN ln -s $HOME/.zprezto/runcoms/zlogin $HOME/.zlogin
@@ -52,16 +60,23 @@ RUN ln -s $HOME/.zprezto/runcoms/zshenv $HOME/.zshenv
 # vim
 RUN mkdir -p $HOME/.vim/autoload $HOME/.vim/bundle
 RUN curl -LSso $HOME/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
-  # vim plugins
+# - vim plugins
 WORKDIR $HOME/.vim/bundle
 RUN git clone git://github.com/jtratner/vim-flavored-markdown.git
 RUN git clone git://github.com/altercation/vim-colors-solarized.git
 RUN git clone https://github.com/ekalinin/Dockerfile.vim
 ##-##
 
+####################
+# rbenv + ruby-build
+RUN git clone https://github.com/sstephenson/rbenv.git $HOME/.rbenv
+RUN git clone https://github.com/sstephenson/ruby-build.git $HOME/.rbenv/plugins/ruby-build
+##-##
+
 ###############
 # bitbucket-cli
 RUN pip install bitbucket-cli
+##-##
 
 ###########
 # add files

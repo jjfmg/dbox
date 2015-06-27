@@ -25,6 +25,8 @@ if [[ -f $HOME/shared/bitbucket ]]; then
   ln -s $HOME/shared/bitbucket $HOME/.bitbucket
 fi
 
+eval "$(rbenv init -)"
+
 alias compose='docker-compose'
 alias d='docker'
 alias dps='docker ps'
